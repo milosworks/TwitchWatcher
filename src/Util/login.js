@@ -1,3 +1,5 @@
+import Puppeteer from 'puppeteer'
+
 export function MakeCookie() {
 	const cookie = [
 		{
@@ -18,21 +20,20 @@ export function MakeCookie() {
 }
 
 //https://github.com/InstreakTV/twitch-watcher/blob/f8153c148abbce17e4039c8238ee2c053e823dc8/app.js#L305
+/**
+ * @param {Puppeteer.Page} page
+ */
 export async function CheckLogin(page) {
 	const cookieSetByServer = await page.cookies()
 
 	for (var i = 0; i < cookieSetByServer.length; i++) {
 		if (cookieSetByServer[i].name == 'twilight-user') {
-			console.log('✅ Login successful!')
+			console.log(`✅ Login successful!`)
 			return true
 		}
 	}
 
-	console.log('🛑 Login failed!')
 	console.log('🔑 Invalid token!')
-	console.log(
-		'\nPleas ensure that you have a valid twitch auth-token.\nhttps://github.com/D3vl0per/Valorant-watcher#how-token-does-it-look-like'
-	)
 
 	process.exit()
 }

@@ -10,7 +10,9 @@ import { SpawnWatcher } from './Util/watcher.js'
 			'--no-zygote',
 			'--disable-gpu',
 			'--no-sandbox',
-			'--disable-setuid-sandbox'
-		]
+			'--disable-setuid-sandbox',
+			'--incognito'
+		],
+		executablePath: process.env.CHROME_PATH
 	})
 })()
