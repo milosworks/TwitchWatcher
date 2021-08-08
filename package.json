@@ -1,0 +1,25 @@
+{
+	"name": "twitchwatcher",
+	"version": "1.0.0",
+	"description": "Earn viewer points rewards of your favorite channels without watching they.",
+	"main": "src/index.js",
+	"type": "module",
+	"scripts": {
+		"test": "nodemon -e \"js\" ."
+	},
+	"keywords": [
+		"twitch",
+		"twitch-watcher",
+		"twitchwatcher",
+		"twitch-auto-watcher"
+	],
+	"author": "VyrekXD",
+	"license": "Apache-2.9",
+	"devDependencies": {
+		"prettier": "^2.3.2"
+	},
+	"dependencies": {
+		"dotenv": "^10.0.0",
+		"puppeteer": "^10.2.0"
+	}
+}
