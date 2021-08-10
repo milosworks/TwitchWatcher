@@ -10,6 +10,7 @@ export async function Debug(debugText, Page, name) {
 		const path = join(__dirname, '../../screenshots')
 
 		if (!Runned && existsSync(path)) {
+			rmdirSync(path)
 			mkdirSync(path)
 		} else if (!existsSync(path)) {
 			mkdirSync(path)

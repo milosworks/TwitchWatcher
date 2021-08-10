@@ -8,7 +8,7 @@ import {
 } from './constants.js'
 import { CheckLogin, MakeCookie } from './login.js'
 import { Optimizer } from './optimizer.js'
-import { Debug } from './debug'
+import { Debug } from './debug.js'
 
 export async function SpawnWatcher(BrowserConfig) {
 	const Pages = new Map()
