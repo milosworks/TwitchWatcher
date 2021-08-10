@@ -26,7 +26,7 @@ export async function Debug(debugText, Page, name) {
 					.map((x) => x.replace('/', '-'))
 					.join(''),
 				'-',
-				name
+				`${name}.png`
 			)
 		})
 	}

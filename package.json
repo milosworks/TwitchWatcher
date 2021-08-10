@@ -1,6 +1,6 @@
 {
 	"name": "twitchwatcher",
-	"version": "0.0.6.3",
+	"version": "0.0.6.4",
 	"description": "Earn viewer points rewards of your favorite channels without watching they.",
 	"main": "src/index.js",
 	"type": "module",
