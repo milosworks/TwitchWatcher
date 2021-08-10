@@ -1,6 +1,7 @@
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
-import { mkdirSync, existsSync } from 'fs'
+import { mkdirSync, existsSync, rmdirSync } from 'fs'
+let Runned = false
 
 export async function Debug(debugText, Page, name) {
 	if (process.env.DEBUG !== 'true') return
@@ -8,7 +9,11 @@ export async function Debug(debugText, Page, name) {
 		const __dirname = dirname(fileURLToPath(import.meta.url))
 		const path = join(__dirname, '../../screenshots')
 
-		if (!existsSync(path)) mkdirSync(path)
+		if (!Runned && existsSync(path)) {
+			mkdirSync(path)
+		} else if (!existsSync(path)) {
+			mkdirSync(path)
+		}
 
 		await Page.screenshot({
 			path: join(
@@ -23,4 +28,6 @@ export async function Debug(debugText, Page, name) {
 		})
 	}
 	if (debugText) console.log(debugText)
+
+	Runned = true
 }
