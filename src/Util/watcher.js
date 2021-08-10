@@ -8,6 +8,7 @@ import {
 } from './constants.js'
 import { CheckLogin, MakeCookie } from './login.js'
 import { Optimizer } from './optimizer.js'
+import { Debug } from './debug'
 
 export async function SpawnWatcher(BrowserConfig) {
 	const Pages = new Map()
@@ -28,16 +29,15 @@ export async function SpawnWatcher(BrowserConfig) {
 					: DefaultNavigationTimeout
 			)
 
-			if (process.env.DEBUG === 'true')
-				console.log('Default nav timeout set')
+			Debug('Default nav timeout set')
 			await Page.setUserAgent(UserAgent)
 
-			if (process.env.DEBUG === 'true') console.log('User agent setted')
+			Debug('User agent setted')
 			const Cookie = MakeCookie()
 			Cookie[0].value = Token
 
 			await Page.setCookie(...Cookie)
-			if (process.env.DEBUG === 'true') console.log('Cookie setted')
+			Debug('Cookie setted', Page, 'Cookie')
 
 			Pages.get(Channel).push(Page)
 			Browsers.push(Browser)
