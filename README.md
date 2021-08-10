@@ -11,6 +11,8 @@ High RAM usage when watching so many channels and many accounts.
 
 You need to put the path of your chrome **(NOT CHROMIUM)**, normally is "C:\Program Files\Google\Chrome\Application\chrome.exe".
 
+If your wifi is slow i reccommend to increase the timeout in your **.env** file, "TIMEOUT=miliseconds" (Default is 60000, 1 sec is 1000 ms)
+
 See **[.env.example](./.env.example)** to see more.
 
 ### Development

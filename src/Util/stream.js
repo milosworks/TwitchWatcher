@@ -4,35 +4,51 @@ import {
 	QualityButton,
 	MinorQualityButton,
 	AdsButton,
-	MuteButton
+	MuteButton,
+	Player
 } from './constants.js'
 
 /**
  * @param {Puppeteer.Page} Page
  */
 export async function Stream(Page) {
-	const selector = await Page.waitForSelector(AdsButton).catch(() => null)
-	if (typeof selector !== 'undefined' && selector !== null)
-		selector.click().catch(() => {})
+	const offline = await Page.$('a.ScHalo-sc-1l14b0i-0 kYWeIT tw-halo').catch(
+		() => null
+	)
 
-	try {
-		await Page.waitForSelector(MuteButton)
-		await Page.click(MuteButton)
-		await Page.click(MuteButton)
+	if (!offline || !offline.status === 'offline') {
+		const selector = await Page.waitForSelector(AdsButton).catch(() => null)
+		if (typeof selector !== 'undefined' && selector !== null)
+			selector.click().catch(() => {})
 
-		await Page.waitForSelector(SettingsButton)
-		await Page.click(SettingsButton)
+		await Page.waitForSelector(Player).catch((e) => {
+			console.log(
+				'🤬 An error was ocurred, feel free to open a issue in github: https://github.com/TwitchWatcher/TwitchWatcher'
+			)
+			console.error(e)
 
-		await Page.waitForSelector(QualityButton)
-		await Page.click(QualityButton)
+			process.exit()
+		})
 
-		await Page.waitForSelector(MinorQualityButton)
-		await Page.click(MinorQualityButton)
-	} catch (e) {
-		console.log(
-			'🤬 An error was ocurred, feel free to open a issue in github: https://github.com/TwitchWatcher/TwitchWatcher'
-		)
-		console.error(e)
+		try {
+			await Page.waitForSelector(MuteButton).catch(() => {})
+			await Page.click(MuteButton).catch(() => {})
+			await Page.click(MuteButton).catch(() => {})
+
+			await Page.waitForSelector(SettingsButton)
+			await Page.click(SettingsButton)
+
+			await Page.waitForSelector(QualityButton)
+			await Page.click(QualityButton)
+
+			await Page.waitForSelector(MinorQualityButton)
+			await Page.click(MinorQualityButton)
+		} catch (e) {
+			console.log(
+				'🤬 An error was ocurred, feel free to open a issue in github: https://github.com/TwitchWatcher/TwitchWatcher'
+			)
+			console.error(e)
+		}
 	}
 
 	console.log('✨ Optimized!')

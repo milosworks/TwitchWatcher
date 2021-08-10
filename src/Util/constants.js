@@ -10,6 +10,8 @@ export const Tokens = process.env.TOKENS.split(',')
 
 export const DefaultNavigationTimeout = 60000
 
+export const Player =
+	'#root > div > div.Layout-sc-nxg1ff-0.gnrDvI > div.Layout-sc-nxg1ff-0.iNmjIQ > main > div.root-scrollable.scrollable-area.scrollable-area--suppress-scroll-x > div.simplebar-scroll-content > div > div > div.InjectLayout-sc-588ddc-0.iTtXFV.persistent-player'
 export const MuteButton =
 	'#root > div > div.sc-AxiKw.idyRgi > div.sc-AxiKw.kSzSVy > main > div.root-scrollable.scrollable-area.scrollable-area--suppress-scroll-x > div.simplebar-scroll-content > div > div > div.fniENP.persistent-player.sc-AxheI > div > div.sc-AxiKw.bOTXee.video-player > div > div > div > div > div:nth-child(5) > div > div.sc-AxiKw.kIfWYD > div.sc-AxiKw.bGYvBM.player-controls__left-control-group > div:nth-child(2) > div > div.sc-AxiKw.sc-fznWOq.oDDQo > button'
 export const AdsButton =
