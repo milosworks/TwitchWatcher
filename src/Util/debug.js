@@ -6,7 +6,8 @@ let Runned = false
 export async function Debug(debugText, Page, name) {
 	if (process.env.DEBUG !== 'true') return
 	if (Page && name) {
-		const __dirname = dirname(fileURLToPath(import.meta.url))
+		const __filename = fileURLToPath(import.meta.url)
+		const __dirname = dirname(__filename)
 		const path = join(__dirname, '../../screenshots')
 
 		if (!Runned && existsSync(path)) {
@@ -22,7 +23,8 @@ export async function Debug(debugText, Page, name) {
 				new Date()
 					.toLocaleDateString('en-US')
 					.split('')
-					.map((x) => x.replace('/', '-')),
+					.map((x) => x.replace('/', '-'))
+					.join(''),
 				'-',
 				name
 			)
