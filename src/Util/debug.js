@@ -19,14 +19,11 @@ export async function Debug(debugText, Page, name) {
 
 		await Page.screenshot({
 			path: join(
-				path,
-				new Date()
+				path`${new Date()
 					.toLocaleDateString('en-US')
 					.split('')
 					.map((x) => x.replace('/', '-'))
-					.join(''),
-				'-',
-				`${name}.png`
+					.join('')}-${name}.png`
 			)
 		})
 	}
