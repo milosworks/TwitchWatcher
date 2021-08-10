@@ -48,7 +48,7 @@ export async function Optimizer(Page) {
 				}
 			}
 
-			Page('Wait 2 sec')
+			Debug('Wait 2 sec')
 			await Page.waitForTimeout(2000)
 
 			Menu.click().catch(() => {})
