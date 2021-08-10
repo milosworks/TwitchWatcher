@@ -17,4 +17,6 @@ See **[.env.example](./.env.example)** to see more.
 
 ### Development
 
-Put HEADLESS in true to see the browser.
+Put HEADLESS to true in _.env_ to see the browser.
+
+Add DEBUG to true in _.env_ to see all console.logs

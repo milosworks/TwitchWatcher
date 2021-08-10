@@ -7,7 +7,7 @@ import {
 	DefaultNavigationTimeout
 } from './constants.js'
 import { CheckLogin, MakeCookie } from './login.js'
-import { Stream } from './stream.js'
+import { Optimizer } from './optimizer.js'
 
 export async function SpawnWatcher(BrowserConfig) {
 	const Pages = new Map()
@@ -28,26 +28,30 @@ export async function SpawnWatcher(BrowserConfig) {
 					: DefaultNavigationTimeout
 			)
 
+			if (process.env.DEBUG === 'true')
+				console.log('Default nav timeout set')
 			await Page.setUserAgent(UserAgent)
 
+			if (process.env.DEBUG === 'true') console.log('User agent setted')
 			const Cookie = MakeCookie()
 			Cookie[0].value = Token
 
 			await Page.setCookie(...Cookie)
+			if (process.env.DEBUG === 'true') console.log('Cookie setted')
 
 			Pages.get(Channel).push(Page)
 			Browsers.push(Browser)
 
-			console.log(`🕐 Watching streamer... (${Channel})`)
 			await Page.goto(BaseUrl + Channel, {
 				waitUntil: 'networkidle0'
 			})
+			console.log(`🕐 Watching streamer... (${Channel})`)
 
 			console.log(`🔐 Checking if succesfull login...`)
 			await CheckLogin(Page)
 
 			console.log('🧰 Optimizing RAM and bandwith usage..')
-			await Stream(Page)
+			await Optimizer(Page)
 		}
 	}
 
