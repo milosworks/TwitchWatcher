@@ -5,7 +5,8 @@
 	"main": "src/index.js",
 	"type": "module",
 	"scripts": {
-		"test": "nodemon -e \"js\" ."
+		"test": "nodemon -e \"js\" .",
+		"setup": "echo \"Pm2 is going to be installed and the app will be running, use pm2 stop TwitchWatcher to stop it\" && npm i -g pm2 && pm2 start src/index.js --name \"TwitchWatcher\" --no-automation"
 	},
 	"keywords": [
 		"twitch",
