@@ -17,7 +17,7 @@ import { Debug } from './debug.js'
  */
 export async function Optimizer(Page) {
 	Debug('Waiting to check if offline', Page, 'offlineCheck')
-	const offline = await Page.$eval(() => {
+	const offline = await Page.evaluate(() => {
 		return document.children[0].outerHTML.includes('isLiveBroadcast')
 	})
 
@@ -94,6 +94,8 @@ export async function Optimizer(Page) {
 			)
 			console.error(e)
 		}
+	} else {
+		Debug('user is offline')
 	}
 
 	console.log('✨ Optimized!')
