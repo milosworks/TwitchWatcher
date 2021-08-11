@@ -17,11 +17,11 @@ import { Debug } from './debug.js'
  */
 export async function Optimizer(Page) {
 	Debug('Waiting to check if offline', Page, 'offlineCheck')
-	const offline = await Page.$('a.ScHalo-sc-1l14b0i-0 kYWeIT tw-halo').catch(
-		() => null
-	)
+	const offline = await Page.$eval(() => {
+		return document.children[0].outerHTML.includes('isLiveBroadcast')
+	})
 
-	if (!offline || !offline.status === 'offline') {
+	if (offline) {
 		Debug('Waiting for user menu', Page, 'userMenu')
 		const Menu = await Page.waitForSelector(UserMenuButton).catch(
 			() => null
@@ -70,22 +70,22 @@ export async function Optimizer(Page) {
 		})
 
 		try {
-			Debug('Waiting for mute button', Page, 'waitingMute')
 			await Page.waitForSelector(MuteButton).catch(() => {})
 			await Page.click(MuteButton).catch(() => {})
 			await Page.click(MuteButton).catch(() => {})
+			Debug('Click mute button', Page, 'waitingMute')
 
-			Debug('Waiting for settings button', Page, 'waitingSettings')
 			await Page.waitForSelector(SettingsButton)
 			await Page.click(SettingsButton)
+			Debug('click settings button', Page, 'clickSettings')
 
-			Debug('Waiting for quality option button', Page, 'waitingQuality')
 			await Page.waitForSelector(QualityButton)
 			await Page.click(QualityButton)
+			Debug('click quality option button', Page, 'clickQuality')
 
-			Debug('Waiting for 160p button', Page, 'waitingPoorQuality')
 			await Page.waitForSelector(MinorQualityButton)
 			await Page.click(MinorQualityButton)
+			Debug('click 160p button', Page, 'clickPoorQuality')
 
 			Debug(null, Page, 'finishOp')
 		} catch (e) {
